@@ -16,7 +16,7 @@ else
 		$_SESSION['id'] = $row['ID'];
 		if (isadmin())
 		{
-			header("Location: index.php");
+			header("Location: dashboard.php");
 		}
 		else
 		{

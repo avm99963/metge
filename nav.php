@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-			<li><a id="home" href="index.php">Home</a></li>
+			<li><a href="home.php">Home</a></li>
 			<?php
 			if (isset($_SESSION['id']))
 			{

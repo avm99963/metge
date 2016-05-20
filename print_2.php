@@ -30,7 +30,7 @@ if (isadmin())
           }
           $placeholder = "<span>".$name."</span>";
         } else {
-          $placeholder = "<button onclick=\"reservar('".$visit["date"]."', '".$i."', '".$i2."', '".$idvisit."', '".$visit["codename"]."')\"".$disabled[$visit["codename"]]." data-codename='".$visit["codename"]."'>Reservar</button>";
+          $placeholder = "-";
         }
         echo "<td".$placeholder_td." id='".$visit['date']."-".$i."-".$i2."'>".$placeholder.$td_cancel."</td>";
       }
