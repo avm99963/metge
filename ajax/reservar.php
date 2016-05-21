@@ -54,13 +54,14 @@ if (loggedin()) {
 		}
 		$query = mysqli_query($con, "INSERT INTO reserva (dia, hora, posicio, usuari) VALUES (".$dia.", ".$hora.", ".$posicio.", ".$userid.")");
 		if ($query) {
-			/* DELETE *//*$fecha = date("Ymd", $dia); */
+			/* DELETE */
+			$fecha = date("Ymd", $dia);
 			/* ICS metadata */
-			/*$summary = "Visita médica";
+			$summary = "Visita médica";
 			$datestart = "TZID=Europe/Madrid:".$fecha."T".mintotime($hora);
 			$dateend = "TZID=Europe/Madrid:".$fecha."T".mintotime((INT)$hora + (INT)$config["visits"][$idvisit]["interval"]);
 			$address = "Av. Pearson, 39-45, 08034, Barcelona, Spain";
-			$uri = "http://avm99963.tk/metge/";
+			$uri = "https://metge.stpauls.es/";
 			$description = "Visita al médico de la escuela.";
 			function dateToCal($timestamp) {
 				return date('Ymd\THis\Z', $timestamp);
@@ -80,12 +81,12 @@ if (loggedin()) {
 				$mail->SMTPAuth   = true;                  // enable SMTP authentication
 				$mail->Host       = "smtp.mailgun.org"; // sets the SMTP server
 				$mail->Port       = 587;                    // set the SMTP port for the GMAIL server
-				$mail->Username   = "postmaster@avm99963.tk"; // SMTP account username
-				$mail->Password   = "8olu9wzszqe1";        // SMTP account password
+				$mail->Username   = "postmaster@avm99963.com"; // SMTP account username
+				$mail->Password   = "18bcaa75fdf6fe7da72a66199565b973";        // SMTP account password
 
 
-				$mail->setFrom('postmaster@avm99963.tk', 'St. Paul\'s School');
-				$mail->addReplyTo('postmaster@avm99963.tk', 'St. Paul\'s School');
+				$mail->setFrom('postmaster@avm99963.com', 'St. Paul\'s School');
+				$mail->addReplyTo('postmaster@avm99963.com', 'St. Paul\'s School');
 				$mail->addAddress($emailto, $nombre);
 
 				$mail->CharSet = 'UTF-8';
@@ -109,7 +110,7 @@ if (loggedin()) {
 				$return['status'] = "mailnotsend_critical";
 			} catch (Exception $e) {
 				$return['status'] = "mailnotsend_warning";
-			}*/
+			}
 			$return['status'] = "ok";
 			$return['text'] = userdata("nombre");
 			$return['dia'] = $dia;

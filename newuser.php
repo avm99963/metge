@@ -24,19 +24,19 @@ $nombre = mysqli_real_escape_string($con, $_POST['nombre']);
 $etapa = mysqli_real_escape_string($con, $_POST['etapa']);
 $email = mysqli_real_escape_string($con, $_POST['email']);
 $dni = mysqli_real_escape_string($con, $_POST['dni']);
-$num_caracteres = $config['password']['characters']; // asignamos el número de caracteres que va a tener la nueva contraseña 
-$nueva_clave = $dni; // generamos una nueva contraseña de forma aleatoria 
+$num_caracteres = $config['password']['characters']; // asignamos el número de caracteres que va a tener la nueva contraseña
+$nueva_clave = $dni; // generamos una nueva contraseña de forma aleatoria
 $password = mysqli_real_escape_string($con, $nueva_clave);
 $admin = mysqli_real_escape_string($con, $_POST['admin']);
 if ($admin == "admin")
 {
-      $admin = TRUE;
+      $admin = "TRUE";
 }
 else
 {
-      $admin = FALSE;
+      $admin = "FALSE";
 }
-$sql6 = "INSERT INTO usuaris (nombre, admin, password, etapa, email, dni) VALUES ('".$nombre."', '".$admin."', '".$password."', '".$etapa."', '".$email."', '".$dni."')";
+$sql6 = "INSERT INTO usuaris (nombre, admin, password, etapa, email, dni) VALUES ('".$nombre."', $admin, '".$password."', '".$etapa."', '".$email."', '".$dni."')";
 if (mysqli_query($con,$sql6))
   {
   echo "<p class='alert-success'>Usuario creado.</p>";

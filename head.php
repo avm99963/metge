@@ -3,3 +3,4 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="js/jquery.autocomplete.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

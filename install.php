@@ -13,11 +13,11 @@
 <?php
 if (isset($_GET['install']) && $_GET['install'] == "1")
 {
-$sql = "CREATE TABLE usuaris 
+$sql = "CREATE TABLE usuaris
 (
-ID INT(13) NOT NULL AUTO_INCREMENT, 
+ID INT(13) NOT NULL AUTO_INCREMENT,
 PRIMARY KEY(ID),
-etapa VARCHAR(50),
+etapa VARCHAR(100),
 nombre VARCHAR(100),
 email VARCHAR(100),
 dni VARCHAR(13),

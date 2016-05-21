@@ -44,7 +44,7 @@ $(document).ready(function() {
 			$link = "welcome.php";
 		}
 		?>
-		<p><a class="button-link" href="<?=$link?>">Reservar horas</a><?php if (isadmin()) {?> <a class="button-link" href="dashboard.php">Dashboard</a><?php } ?></p>
+		<p><a class="button-link" href="<?=$link?>">Reservar horas</a><?php if (isadmin()) {?> <a class="button-link" href="dashboard.php">Panel de control</a><?php } ?></p>
 		<?php
         }
 		else
