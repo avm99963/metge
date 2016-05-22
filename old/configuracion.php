@@ -23,28 +23,49 @@ THE SOFTWARE.
 -->
 <?php
 require("core.php");
-if (isadmin()) {
-  $nombre = mysqli_real_escape_string($con, $_POST['nombre']);
-  $etapa = mysqli_real_escape_string($con, $_POST['etapa']);
-  $email = mysqli_real_escape_string($con, $_POST['email']);
-  $dni = mysqli_real_escape_string($con, $_POST['dni']);
-  $num_caracteres = $config['password']['characters']; // asignamos el número de caracteres que va a tener la nueva contraseña
-  $nueva_clave = $dni; // generamos una nueva contraseña de forma aleatoria
-  $password = mysqli_real_escape_string($con, $nueva_clave);
-  $admin = mysqli_real_escape_string($con, $_POST['admin']);
-  if ($admin == "admin") {
-        $admin = "TRUE";
-  } else {
-        $admin = "FALSE";
-  }
-  $sql6 = "INSERT INTO usuaris (nombre, admin, password, etapa, email, dni) VALUES ('".$nombre."', $admin, '".$password."', '".$etapa."', '".$email."', '".$dni."')";
-  if (mysqli_query($con,$sql6)) {
-    header("Location: users.php?msg=addedsuccessful");
-    exit();
-  } else {
-    die ("<p class='alert-danger'>Error creando el usuario: " . mysqli_error($con) . "</p>");
-  }
-} else {
-      header('HTTP/1.0 404 Not Found');
+if (isadmin())
+{
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<?php require ("head.php"); ?>
+<title>Configuración - <?php echo $appname; ?></title>
+<style>
+td, th
+{
+	padding:5px;
+}
+table
+{
+	border-collapse:collapse;
+}
+table, th, td
+{
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<div class="content">
+	<?php include "nav.php"; ?>
+	<article>
+		<?php anuncio(); ?>
+		<?php require("sidebar.php"); ?>
+		<div class="text right large">
+		<h1>Configuración del config.php</h1>
+		<p><b>Appname</b>: <?=$appname?></p>
+		<p><b>Anuncio</b>:<br><?=$anuncio?></p>
+		<p><b>Número de carácteres en las contraseñas</b>: <?=$config['password']['characters']?></p>
+		</div>
+	</article>
+</div>
+</body>
+</html>
+<?php
+}
+else
+{
+	header('HTTP/1.0 404 Not Found');
 }
 ?>

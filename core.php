@@ -14,6 +14,10 @@
 date_default_timezone_set("Europe/Madrid");
 setlocale(LC_ALL,"es_ES");
 
+if (!file_exists("config.php")) {
+  die("Please, edit the config in config.default.php and save the file as config.php.");
+}
+
 // Aquí se recoge la configuración
 require("config.php");
 
@@ -242,5 +246,24 @@ function mintotime($time) {
 
 function rand_hex() {
     return dechex(mt_rand(0, mt_getrandmax()));
+}
+
+function md_snackbar($msg) {
+  ?>
+  <div class="mdl-snackbar mdl-js-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button type="button" class="mdl-snackbar__action"></button>
+  </div>
+  <script>
+  window.addEventListener("load", function() {
+    var notification = document.querySelector('.mdl-js-snackbar');
+    notification.MaterialSnackbar.showSnackbar(
+      {
+        message: '<?=htmlspecialchars($msg)?>'
+      }
+    );
+  });
+  </script>
+  <?php
 }
 ?>

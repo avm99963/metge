@@ -3,7 +3,7 @@ require("../core.php");
 $json = array();
 $nombre = mysqli_real_escape_string($con, $_GET['query']);
 $json['query'] = $nombre;
-if (isset($_GET["admin"]) && $_GET["admin"] != "1") {
+if (!isset($_GET["admin"]) || (isset($_GET["admin"]) && $_GET["admin"] != "1")) {
 	$condition = " AND admin = 0";
 } else {
 	$condition = "";
