@@ -125,6 +125,10 @@ $md_header_row_more = '<div class="mdl-layout-spacer"></div>
     padding: 0!important;
   }
 
+  .dt-table .mdl-cell {
+    margin: 0!important;
+  }
+
   #usuario {
     position: relative;
   }
