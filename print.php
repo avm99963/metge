@@ -73,7 +73,7 @@ if (isadmin())
                   echo "<option value='".$i."'>".$visit["name"]." - ".date("d F", $visit["date"])."</option>";
                 }
                 ?>
-                <option value="missing">Pacientes sin reserva</option>
+                <option value="missing">Lista de pacientes</option>
               </select>
               <label for="admin" class="mdlext-selectfield__label">Horario</label>
             </div>

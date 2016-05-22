@@ -48,9 +48,16 @@ THE SOFTWARE.
 <body>
   <?php
   require("core.php");
-  if (isadmin())
-  {
+  if (isadmin()) {
     if (isset($_GET["horario"]) && isset($config["visits"][$_GET["horario"]])) {
+      $query = mysqli_query($con, "SELECT * FROM reserva");
+      if (mysqli_num_rows($query)) {
+        $reserva = array();
+        while ($row = mysqli_fetch_array($query)) {
+          $reserva[$row["dia"]][$row["hora"]][$row["posicio"]]["usuari"] = $row["usuari"];
+          $reserva[$row["dia"]][$row["hora"]][$row["posicio"]]["nombre"] = userdata("nombre", $row["usuari"]);
+        }
+      }
       $visit = $config["visits"][$_GET["horario"]];
       echo "<table><thead><tr><th>".$visit["name"]."</th>";
       for($i=1; $i<=$visit["number"]; $i++) {
@@ -64,17 +71,11 @@ THE SOFTWARE.
           $placeholder_td = "";
           $td_cancel = "";
           if (isset($reserva[$visit["date"]][$i][$i2])) {
-            if ($reserva[$visit["date"]][$i][$i2]["usuari"] == $_SESSION["id"]) {
-              $placeholder_td = " class='user'";
-              $td_cancel = " <a href='cancelreservar.php?dia=".$visit["date"]."'><img style='height:16px;' src='img/cancel.png'></a>";
-              $name = $reserva[$visit["date"]][$i][$i2]["nombre"];
+            $placeholder_td = " class='reserved'";
+            if (userdata("admin", $reserva[$visit["date"]][$i][$i2]["usuari"]) == 1) {
+              $name = "Bloqueado";
             } else {
-              $placeholder_td = " class='reserved'";
-              if (isadmin()) {
-                $name = $reserva[$visit["date"]][$i][$i2]["nombre"];
-              } else {
-                $name = "-";
-              }
+              $name = $reserva[$visit["date"]][$i][$i2]["nombre"];
             }
             $placeholder = "<span>".$name."</span>";
           } else {
@@ -86,7 +87,47 @@ THE SOFTWARE.
       }
       echo "</tbody></table></div>";
     } elseif (isset($_GET["horario"]) && $_GET["horario"] == "missing") {
+      $reservasperuser = array();
 
+      $query = mysqli_query($con, "SELECT * FROM reserva");
+      if (mysqli_num_rows($query)) {
+        $reserva = array();
+        while ($row = mysqli_fetch_array($query)) {
+          if (!isset($reservasperuser[$row["usuari"]])) {
+            $reservasperuser[$row["usuari"]] = 1;
+          } else {
+            $reservasperuser[$row["usuari"]] += 1;
+          }
+        }
+      }
+
+      $groups = array();
+      foreach ($config['visits'] as $visit) {
+        if (!in_array($visit["codename"], $groups)) {
+          $groups[] = $visit["codename"];
+        }
+      }
+
+      $ngroups = count($groups);
+
+      echo "<h2>Lista de pacientes</h2><h3>Pacientes a los que les falta reservar alguna visita</h3><table><thead><tr><th>Nombre</th><th>Reservas</th></thead><tbody>";
+
+      $everythingallright = "";
+
+      $query2 = mysqli_query($con, "SELECT * FROM usuaris");
+      while ($user = mysqli_fetch_assoc($query2)) {
+        if ($user["admin"] == 0) {
+          if (!isset($reservasperuser[$user["ID"]])) {
+            $reservasperuser[$user["ID"]] = 0;
+          }
+          if ($reservasperuser[$user["ID"]] < $ngroups) {
+            echo "<tr><td>".$user["nombre"]."</td><td>".$reservasperuser[$user["ID"]]."</td></tr>";
+          } else {
+            $everythingallright .= "<tr><td>".$user["nombre"]."</td><td>".$reservasperuser[$user["ID"]]."</td></tr>";
+          }
+        }
+      }
+      echo "</tbody></table><h3>Pacientes que ya han reservado todas las visitas</h3><table><thead><tr><th>Nombre</th><th>Reservas</th></thead><tbody>".$everythingallright."</tbody></table>";
     } else {
       echo "<div class='alert-danger'>No existe este horario.</div>";
     }

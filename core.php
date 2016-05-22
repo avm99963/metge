@@ -14,10 +14,6 @@
 date_default_timezone_set("Europe/Madrid");
 setlocale(LC_ALL,"es_ES");
 
-if (!file_exists("config.php")) {
-  die("Please, edit the config in config.default.php and save the file as config.php.");
-}
-
 // Aquí se recoge la configuración
 require("config.php");
 
