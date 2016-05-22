@@ -74,7 +74,7 @@ $md_header_row_more = '<div class="mdl-layout-spacer"></div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <link rel="stylesheet" href="lib/datatables/dataTables.material.min.css">
-  <script src="lib/datatables/jQuery.dataTables.min.js"></script>
+  <script src="lib/datatables/jquery.dataTables.min.js"></script>
   <script src="lib/datatables/dataTables.material.min.js"></script>
 
   <script>
@@ -119,6 +119,10 @@ $md_header_row_more = '<div class="mdl-layout-spacer"></div>
   /* Hide datable's search box */
   .dataTables_wrapper .mdl-grid:first-child {
     display: none;
+  }
+
+  .dt-table {
+    padding: 0!important;
   }
 
   #usuario {
