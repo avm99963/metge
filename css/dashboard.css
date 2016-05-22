@@ -56,7 +56,7 @@ td.reserved {
   width: 100%;
 }
 
-.delete {
+.delete, .icon {
   color: black!important;
   vertical-align: middle;
 }

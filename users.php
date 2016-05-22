@@ -138,7 +138,7 @@ $md_header_row_more = '<div class="mdl-layout-spacer"></div>
 	<link rel="stylesheet" type="text/css" href="bower_components/dialog-polyfill/dialog-polyfill.css">
 </head>
 <body class="mdl-color--green">
-  <button class="adduser mdl-button md-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">add</i><span class="mdl-ripple"></span></button>
+  <button class="adduser mdl-button md-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">person_add</i><span class="mdl-ripple"></span></button>
   <button class="importcsv mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-color--grey-200"><i class="material-icons">file_upload</i></button>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
     <?php require("adminmdnav.php"); ?>
@@ -169,7 +169,7 @@ $md_header_row_more = '<div class="mdl-layout-spacer"></div>
             			{
             				$type = "patient";
             			}
-            			echo "<tr><td class='extra'>".$row['ID']."</td><td class='mdl-data-table__cell--non-numeric'>".$row['nombre']."</td><td class='mdl-data-table__cell--non-numeric extra'>".$row['dni']."</td><td class='mdl-data-table__cell--non-numeric extra'>".$type."</td><td class='mdl-data-table__cell--non-numeric'><a href='user.php?id=".$row['ID']."'><img src='img/view_details.png'></a> <a href='edituser.php?id=".$row['ID']."'><img src='img/make_decision.png'></a> <a href='deleteuser.php?id=".$row['ID']."'><img src='img/bad_decision.png'></a></td></tr>";
+            			echo "<tr><td class='extra'>".$row['ID']."</td><td class='mdl-data-table__cell--non-numeric'>".$row['nombre']."</td><td class='mdl-data-table__cell--non-numeric extra'>".$row['dni']."</td><td class='mdl-data-table__cell--non-numeric extra'>".$type."</td><td class='mdl-data-table__cell--non-numeric'><a href='user.php?id=".$row['ID']."'><i class='material-icons icon'>pageview</i></a> <a href='edituser.php?id=".$row['ID']."'><i class='material-icons icon'>edit</i></a> <a href='deleteuser.php?id=".$row['ID']."'><i class='material-icons icon'>delete</i></a></td></tr>";
             		}
             		?>
         			</tbody>
