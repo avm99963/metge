@@ -68,8 +68,15 @@ if (isset($_GET['msg'])) {
       ?>
       <p>¡Hola <?php echo userdata('nombre'); ?>!</p>
       <?php
+      $groups = array();
+      foreach ($config['visits'] as $visit) {
+        if (!in_array($visit["codename"], $groups)) {
+          $groups[] = $visit["codename"];
+        }
+      }
+
   		$whatif = mysqli_query($con, "SELECT * FROM reserva WHERE usuari = ".(INT)$_SESSION['id']);
-  		if (mysqli_num_rows($whatif)) {
+  		if (mysqli_num_rows($whatif) == count($groups)) {
   			$link = "reservar.php";
         $linktext = "Modificar reservas";
   		} else {
