@@ -54,6 +54,7 @@ td.reserved {
   display: inline-block;
   margin-bottom: 16px;
   width: 100%;
+  overflow-x: auto;
 }
 
 .delete, .icon {
